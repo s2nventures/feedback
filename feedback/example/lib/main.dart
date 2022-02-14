@@ -32,31 +32,34 @@ bool _useCustomFeedback = false;
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BetterFeedback(
-      child: MaterialApp(
-        title: 'Feedback Demo',
-        theme: ThemeData(
-          primarySwatch: _useCustomFeedback ? Colors.green : Colors.blue,
-        ),
-        home: MyHomePage(_toggleCustomizedFeedback),
+    return MaterialApp(
+      title: 'Feedback Demo',
+      theme: ThemeData(
+        primarySwatch: _useCustomFeedback ? Colors.green : Colors.blue,
       ),
-      // If custom feedback is not enabled, supply null and the default text
-      // feedback form will be used.
-      feedbackBuilder: _useCustomFeedback
-          ? (context, onSubmit, scrollController) => CustomFeedbackForm(
-                onSubmit: onSubmit,
-                scrollController: scrollController,
-              )
-          : null,
-      theme: FeedbackThemeData(
-        background: Colors.grey,
-        feedbackSheetColor: Colors.grey[50]!,
-        drawColors: [
-          Colors.red,
-          Colors.green,
-          Colors.blue,
-          Colors.yellow,
-        ],
+      home: MyHomePage(_toggleCustomizedFeedback),
+      builder: (context, child) => BetterFeedback(
+        child: child!,
+        // If custom feedback is not enabled, supply null and the default text
+        // feedback form will be used.
+        feedbackBuilder: _useCustomFeedback
+            ? (context, onSubmit, scrollController) => CustomFeedbackForm(
+                  onSubmit: onSubmit,
+                  scrollController: scrollController,
+                )
+            : null,
+        theme: FeedbackThemeData(
+          background: Colors.grey,
+          feedbackSheetColor: Colors.grey[50]!,
+          drawColors: [
+            Colors.red,
+            Colors.green,
+            Colors.blue,
+            Colors.yellow,
+          ],
+        ),
+        mode: FeedbackMode.draw,
+        pixelRatio: 1,
       ),
       localizationsDelegates: [
         GlobalFeedbackLocalizationsDelegate(),
@@ -64,9 +67,6 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      localeOverride: const Locale('en'),
-      mode: FeedbackMode.draw,
-      pixelRatio: 1,
     );
   }
 

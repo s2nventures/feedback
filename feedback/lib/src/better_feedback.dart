@@ -105,8 +105,6 @@ class BetterFeedback extends StatefulWidget {
     required this.child,
     this.feedbackBuilder,
     this.theme,
-    this.localizationsDelegates,
-    this.localeOverride,
     this.mode = FeedbackMode.draw,
     this.pixelRatio = 3.0,
   })  : assert(
@@ -127,19 +125,6 @@ class BetterFeedback extends StatefulWidget {
 
   /// The Theme, which gets used to style the feedback ui.
   final FeedbackThemeData? theme;
-
-  /// The delegates for this library's FeedbackLocalization widget.
-  /// You need to supply the following delegates if you choose to customize it.
-  /// [MaterialLocalizations]
-  /// [CupertinoLocalizations]
-  /// [WidgetsLocalizations]
-  /// an instance of [LocalizationsDelegate]<[FeedbackLocalizations]>
-  final List<LocalizationsDelegate<dynamic>>? localizationsDelegates;
-
-  /// Can be used to set the locale.
-  /// If it is not set, the platform default locale is used.
-  /// If no platform default locale exists, english is used.
-  final Locale? localeOverride;
 
   /// Set the default mode when launching feedback.
   /// By default it will allow the user to navigate.
@@ -199,8 +184,6 @@ class _BetterFeedbackState extends State<BetterFeedback> {
   Widget build(BuildContext context) {
     return FeedbackApp(
       data: widget.theme,
-      localizationsDelegates: widget.localizationsDelegates,
-      localeOverride: widget.localeOverride,
       child: Builder(builder: (context) {
         return FeedbackData(
           controller: controller,

@@ -41,12 +41,12 @@ class BackButtonInterceptor with WidgetsBindingObserver {
   }
 
   static void _mount() {
-    WidgetsBinding.instance!.addObserver(instance);
+    WidgetsBinding.instance.addObserver(instance);
   }
 
   static void _unMount() {
     _prioritizedCallbacks.clear();
-    WidgetsBinding.instance!.removeObserver(instance);
+    WidgetsBinding.instance.removeObserver(instance);
   }
 
   Iterable<BoolCallback> get _callbacks =>

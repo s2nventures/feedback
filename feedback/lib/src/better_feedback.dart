@@ -8,7 +8,6 @@ import 'package:feedback/src/feedback_widget.dart';
 import 'package:feedback/src/theme/feedback_theme.dart';
 import 'package:feedback/src/utilities/feedback_app.dart';
 import 'package:feedback/src/utilities/renderer/renderer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// The function to be called when the user submits his feedback.
